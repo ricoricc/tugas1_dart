@@ -1,7 +1,102 @@
 import 'dart:io';
 
 void printDiamond(int n) {
-  print("*");
+  int varA = 1;
+  int varB = 1;
+  int varC;
+  int c = 0;
+  for (double i = n / 2 - 1; i > 0; i--) {
+    c = 0;
+    //print left
+    for (double j = i; j > 0; j--) {
+      stdout.write("*");
+    }
+    for (double k = 0; k < varB; k++) {
+      if (c == 0) {
+        if (varA > 9) {
+          varA = 1;
+        }
+        stdout.write(varA);
+        c = 1;
+      } else if (k != varB - 1 && c == 1) {
+        stdout.write(" ");
+        c = 0;
+      }
+    }
+
+    //print right
+    for (double n = 0; n < varB; n++) {
+      if (c == 0) {
+        if (varA > 9) {
+          varA = 1;
+        }
+        stdout.write(varA);
+        c = 1;
+      } else if (n != varB - 1 && c == 1) {
+        stdout.write(" ");
+        c = 0;
+      }
+    }
+    for (double m = i; m > 0; m--) {
+      stdout.write("*");
+    }
+
+    if (varB > n) {
+      varB = 1;
+    }
+    varA++;
+    varB++;
+    // if (varA > 9) {
+    //   varB = varA;
+    //   varA = 1;
+    // }
+    stdout.write("\n");
+  }
+
+  varC = varB;
+
+  for (double i = 0; i < n / 2; i++) {
+    c = 0;
+    //print left
+    for (double j = 0; j < i; j++) {
+      stdout.write("*");
+    }
+
+    for (int k = varC; k > 0; k--) {
+      if (c == 0) {
+        stdout.write(varA);
+        c = 1;
+      } else if (k != varA - 1 && c == 1) {
+        stdout.write(" ");
+        c = 0;
+      }
+    }
+
+    //print right
+    for (int l = varC; l > 0; l--) {
+      if (c == 0) {
+        stdout.write(varA);
+        c = 1;
+      } else if (l != 1 && c == 1) {
+        stdout.write(" ");
+        c = 0;
+      }
+    }
+
+    for (double m = i; m > 0; m--) {
+      stdout.write("*");
+    }
+
+    if (varA > n) {
+      varA = 1;
+    }
+    varC--;
+    varA++;
+    if (varA > 9) {
+      varA = 1;
+    }
+    stdout.write("\n");
+  }
 }
 
 void printTriangle(int n) {
@@ -60,6 +155,12 @@ void main(List<String> arguments) {
   String? inputData = stdin.readLineSync();
   int n = int.parse(inputData!);
 
-  //printDiamond(n);
+  // //ASCII
+  // int j = stdin.readByteSync();
+
+  print("N= $n");
+  printDiamond(n);
+  print("");
+  print("N= $n");
   printTriangle(n);
 }
